@@ -124,8 +124,9 @@ Bubbles = () ->
       rScale.domain([0, maxDomainValue])
 
       numSegments = countSegments(data)
-      #s = '<span class="text">your Vidd category map contains</span></br><span class="highlight">' + numSegments + '</span><span class="text">  highlight segments in </span><span class="highlight">' + data.length + '</span><span class="text"> categories</span>';
       s = '<span class="text">your Vidd category map contains</span></br><span class="bubble-value">' + numSegments + '</span><span class="text">  highlight segments in </span><span class="bubble-label">' + data.length + '</span><span class="bubble-label"> categories</span>';
+      #s += '<br/><br/><hr>&copy; <a href="http://Vidd.ai" target="_blank">Vidd.ai</a> All rights reserved';
+      s += '<hr>&copy; <a href="http://Vidd.ai" target="_blank">Vidd.ai</a> All rights reserved';
       d3.select("#status").html(s);
 
       #user = getParams()['u']

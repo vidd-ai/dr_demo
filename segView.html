@@ -129,6 +129,8 @@ d3.json(json_fn, function(error, json) {
   switch (summary_type) {
     case 'Cat':
       //console.log('ingraph now label');
+      update_atoms(in_graph[label]["nodes"]);
+      console.log ('new ingraph:',in_graph[label]);
       update('label', in_graph);
       break;
     default:
@@ -139,6 +141,13 @@ d3.json(json_fn, function(error, json) {
       }
     }
 });
+
+function update_atoms(in_nodes) {
+  for (i=0; i< in_nodes.length; i++) {
+      var n = in_nodes[i];
+      n["atom"] = i;
+  }
+}
 
 function update(filter, in_graph) {
    var graph;
@@ -172,6 +181,7 @@ function update(filter, in_graph) {
            $('#segFilter').fadeIn().html('Shortish ');
            break;
         case 'selected': graph = in_graph;
+console.log('case selected, in_graph:',graph);
            $('#segFilter').fadeIn().html('Selected ');
            break;
         default: graph = in_graph.long; break;
@@ -360,6 +370,16 @@ function update(filter, in_graph) {
             }
             all_nodes = data_all.nodes;
             console.log('all_nodes:',all_nodes);
+	    // remap "atom" to array position for summary_type = 'Cat'
+	    if (summary_type == 'Cat') {
+	      for (i=0; i< all_nodes.length; i++) {
+		var n = all_nodes[i];
+		n["atom"] = i;
+	      }
+	      //update();
+	    }
+            console.log('new all_nodes:',all_nodes);
+
             // show longish button if json entry
             if ("medium2" in data) {
                 $('#longish').show();
@@ -462,11 +482,13 @@ function update(filter, in_graph) {
         d3.select('#Selected').on('click', function () {
            // convert select_set to a graph D3 recognizes so it can be redrawn on svg
            var x = [...select_set];
+	   console.log('selected_graph, x:',x);
+	   console.log('selected_graph, all_nodes:',all_nodes);
 	   selected_graph["nodes"] = [];
 	   for (var i = 0; i < x.length; i++) {
                 selected_graph["nodes"].push(all_nodes[x[i]]);
 	   }
-	   //console.log('selected_graph:',selected_graph["nodes"]);
+	   console.log('selected_graph:',selected_graph["nodes"]);
            update('selected', selected_graph);
         });
 
@@ -635,11 +657,17 @@ console.log('in writeTimeline, org_meta:',org_meta);
 	    // default to edl
 	    a.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(select_str); // nb: must encode URI or won't save properly
 	    a.download = fn + '.edl';
+            if (summary_type == 'Cat') {
+	    	a.download = label + '.edl';
+	    }
 
 	    // overwrite if fcpxml 
 	    if (org_meta) {
 	      a.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(select_str_fcpxml); // nb: must encode URI or won't save properly
 	      a.download = fn + '.fcpxml';
+              if (summary_type == 'Cat') {
+	    	a.download = label + '.fcpxml';
+	      }
 	    }
 	    a.click(); // fire click event
 	    select_str = '# mpv EDL v0;'; // reset 
@@ -719,13 +747,12 @@ console.log('in writeTimeline, org_meta:',org_meta);
     <button id="Send" >Save Selected</button>
     <a class="btn btn-info" id="download_a" href="" download="filename.edl" style="display:none">Download</a>
     &nbsp;&nbsp;&nbsp;
+<!--
     |
     &nbsp;&nbsp;&nbsp;
-<!--
-    <button id="categoryMap">Category map</button>
-    <button id="fileMap">File map</button>
+    &copy;<button id="VIDD">Vidd.ai</button> All rights reserved
 -->
-    <button id="VIDD">Vidd.ai</button>
+    <span class="text .navbar-fixed-bottom">&copy; <a href="http://Vidd.ai" target="_blank">Vidd.ai</a>&nbsp;&nbsp;All rights reserved</span>
     <br /><br />
 </div>
 
