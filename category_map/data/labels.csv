@@ -1,0 +1,64 @@
+name,count,label
+Bathtub,10,bathtub
+Bathing,15,bathing
+Product,15,product
+Child,25,child
+Skin,5,skin
+Face,7,face
+Facial expression,6,facial_expression
+Cheek,6,cheek
+Baby,6,baby
+Hair,6,hair
+Forehead,2,forehead
+Nose,5,nose
+Head,2,head
+Eyebrow,1,eyebrow
+Toddler,11,toddler
+Hardwood,1,hardwood
+Floor,6,floor
+Flooring,3,flooring
+Play,8,play
+Photograph,6,photograph
+Ball,1,ball
+Crawling,1,crawling
+People,1,people
+Couch,1,couch
+Black,2,black
+Shoulder,1,shoulder
+Musical keyboard,1,musical_keyboard
+Keyboard,1,keyboard
+Electronic instrument,1,electronic_instrument
+Musical instrument,1,musical_instrument
+Piano,1,piano
+Pianist,1,pianist
+Leisure centre,11,leisure_centre
+Swimming,13,swimming
+Medley swimming,3,medley_swimming
+Swimming pool,12,swimming_pool
+Leisure,3,leisure
+Barechested,1,barechested
+Recreation,1,recreation
+Fun,1,fun
+Swimmer,1,swimmer
+Breaststroke,1,breaststroke
+Lawn,1,lawn
+Tree,2,tree
+Freezing,3,freezing
+Snow,20,snow
+Winter,13,winter
+Skiing,5,skiing
+Geological phenomenon,7,geological_phenomenon
+Blue,2,blue
+Snowboarding,3,snowboarding
+Skier,3,skier
+Snowboard,2,snowboard
+Ski,1,ski
+Piste,4,piste
+Sky,1,sky
+Atmospheric phenomenon,1,atmospheric_phenomenon
+Nature,1,nature
+Hill station,1,hill_station
+White,1,white
+Ceiling,1,ceiling
+IG,95,ig
+FB,9,fb

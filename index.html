@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Vidd.ai maps</title>
+<header>
+</header>
+<body>
+<script src="js/jquery.min.js"></script>
+<script>
+ var user='EFC5B894-B032-4133-9D1F-5EA87E27BDE4';
+
+ function detectmob() {
+ if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ ){
+    return true;
+  }
+ else {
+    return false;
+  }
+ }
+
+ function showFile() {
+   if (detectmob()) {
+     window.location="segSummary.html?u=" + user + '&c=File';
+   } else {
+     window.location="viewer.html?v=segSummary.html&u=" + user + '&c=File';
+   }
+ }
+
+ function showCat() {
+   var summary_type = 'Cat';
+   if (detectmob()) {
+    s = "category_map/index.html?u=" + user + '&c=' + summary_type + '&m=true';
+   } else {
+    s = "viewer.html?v=category_map/index.html&u=" + user + '&c=' + summary_type;
+   }
+   window.location=s;
+ }
+
+ var json_fn = 'output/' + user + '/' + user+ '.cat2.json';
+ $.getJSON(json_fn, function (data) {
+    if (data) {
+       //alert('data.length'+data);
+       showCat();
+    }
+    else {
+       //alert('data.length'+data);
+       showFile();
+     }
+ })
+ .error(function() { showFile();})
+/*
+ if (detectmob()) {
+   window.location="segSummary.html?u=" + user + '&c=File';
+ } else {
+   window.location="viewer.html?v=segSummary.html&u=" + user + '&c=File';
+ }
+ var summary_type = 'Cat';
+ if (detectmob()) {
+    s = "category_map/index.html?u=" + user + '&c=' + summary_type + '&m=true';
+ } else {
+    s = "viewer.html?v=category_map/index.html&u=" + user + '&c=' + summary_type;
+ }
+ window.location=s;
+*/
+</script>
+</body>
+</html>
